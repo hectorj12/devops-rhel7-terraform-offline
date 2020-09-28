@@ -1,0 +1,35 @@
+---
+
+  - name: Copy Unzip rpm
+    copy:
+      src: "../bin/{{ unzip_rpm }}"
+      dest: /tmp/
+
+  - name: Install Unzip pkg
+    shell: rpm -ivh --force "{{ unzip_rpm }}"
+    args:
+      chdir: /tmp/
+    become: yes
+
+  - name: Unzip Terraform  
+    unarchive:
+      src: "../bin/{{ terraform_zip }}"
+      dest: /usr/local/bin/
+      owner: root
+
+  - name: Create Terraform plugins folder
+    file: 
+      path: /root/.terraform.d/plugins/
+      state: directory
+      owner: root
+      group: root
+
+  - name: Unzip Terraform Providers
+    unarchive:
+      src: "../bin/{{ terraform_provider }}"
+      dest: /root/.terraform.d/plugins/
+      owner: root
+      mode: 0755
+
+
+...

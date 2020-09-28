@@ -1,0 +1,8 @@
+---
+
+unzip_rpm: "unzip-6.0-21.el7.x86_64.rpm"
+terraform_zip: "terraform_0.12.29_linux_amd64.zip"
+terraform_provider: "terraform-provider-vsphere_1.18.3_linux_amd64.zip"
+
+
+...
